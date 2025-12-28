@@ -11,7 +11,7 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RouteProp } from '@react-navigation/native';
-import { mockServices } from '../data/mockData';
+import { mockServices } from '../data/mockData'; // TODO: Replace with API call to fetch available tests for purchase
 
 type RootStackParamList = {
   Welcome: undefined;
@@ -36,6 +36,7 @@ interface Props {
 
 export default function OrderForm({ navigation, route }: Props) {
   const { serviceId } = route.params;
+  // TODO: Replace with API call to fetch service details
   const service = mockServices.find((s) => s.id === serviceId);
 
   const [formData, setFormData] = useState({
@@ -56,7 +57,7 @@ export default function OrderForm({ navigation, route }: Props) {
       return;
     }
 
-    // Mock order creation
+    // TODO: Replace mock order creation with API call to submit order and get real orderId
     const orderId = `ORD${Date.now()}`;
     navigation.navigate('Payment', { orderId });
   };

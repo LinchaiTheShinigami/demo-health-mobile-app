@@ -12,6 +12,8 @@ import Orders from './screens/Orders';
 import OrderDetails from './screens/OrderDetails';
 
 export type RootStackParamList = {
+  // TODO: Add Login screen for user authentication
+  // Login: undefined;
   Welcome: undefined;
   Services: undefined;
   OrderForm: { serviceId: string };
@@ -23,11 +25,15 @@ export type RootStackParamList = {
 const Stack = createStackNavigator<RootStackParamList>();
 
 export default function App() {
+  // TODO: Check user authentication status and conditionally set initial route
+  // const isLoggedIn = checkAuthStatus(); // Implement auth check
+  // const initialRoute = isLoggedIn ? 'Welcome' : 'Login';
+
   return (
     <SafeAreaProvider>
       <NavigationContainer>
         <Stack.Navigator
-          initialRouteName="Welcome"
+          initialRouteName="Welcome" // TODO: Use initialRoute based on auth status
           screenOptions={{
             headerStyle: {
               backgroundColor: '#3498db',
@@ -38,6 +44,7 @@ export default function App() {
             },
           }}
         >
+          {/* TODO: Add Login screen as first screen for unauthenticated users */}
           <Stack.Screen
             name="Welcome"
             component={Welcome}

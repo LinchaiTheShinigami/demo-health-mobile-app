@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { mockOrders } from '../data/mockData';
+import { mockOrders } from '../data/mockData'; // TODO: Replace with API call to fetch orders for specific user
 import { Order } from '../types';
 
 type RootStackParamList = {
@@ -103,6 +103,7 @@ export default function Orders({ navigation }: Props) {
         <Text style={styles.subtitle}>Track your health test orders</Text>
       </View>
 
+      {/* TODO: Replace mockOrders with API call to fetch orders for specific user */}
       {mockOrders.length === 0 ? (
         <View style={styles.emptyContainer}>
           <Text style={styles.emptyText}>No orders yet</Text>

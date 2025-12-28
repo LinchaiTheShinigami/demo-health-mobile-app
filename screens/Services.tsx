@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { mockServices } from '../data/mockData';
+import { mockServices } from '../data/mockData'; // TODO: Replace with API call to fetch available tests for purchase
 import { TestService } from '../types';
 
 type RootStackParamList = {
@@ -51,6 +51,7 @@ export default function Services({ navigation }: Props) {
         <Text style={styles.subtitle}>Choose a health test service</Text>
       </View>
 
+      {/* TODO: Replace mockServices with API call to fetch available tests for purchase */}
       <FlatList
         data={mockServices}
         renderItem={renderService}

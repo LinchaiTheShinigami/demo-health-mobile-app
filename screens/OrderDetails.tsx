@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { RouteProp } from '@react-navigation/native';
-import { mockOrders } from '../data/mockData';
+import { mockOrders } from '../data/mockData'; // TODO: Replace with API call to fetch orders for specific user
 
 type RootStackParamList = {
   Welcome: undefined;
@@ -24,7 +24,7 @@ interface Props {
 
 export default function OrderDetails({ route }: Props) {
   const { orderId } = route.params;
-  const order = mockOrders.find((o) => o.id === orderId);
+  const order = mockOrders.find((o) => o.id === orderId); // TODO: Replace with API call to fetch specific order details
 
   const getStatusColor = (status: string) => {
     switch (status) {

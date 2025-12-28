@@ -36,6 +36,7 @@ export default function Payment({ navigation, route }: Props) {
   const { orderId } = route.params;
   const [isProcessing, setIsProcessing] = useState(false);
 
+  // TODO: Replace mock payment logic with real APIs from Apple Pay, Google Pay, and Stripe
   const handlePayment = async (
     method: 'google_pay' | 'apple_pay' | 'stripe'
   ) => {
@@ -50,6 +51,7 @@ export default function Payment({ navigation, route }: Props) {
         [
           {
             text: 'OK',
+            // TODO: Add API call to update order status to 'paid' before navigating
             onPress: () => navigation.navigate('Orders'),
           },
         ]
