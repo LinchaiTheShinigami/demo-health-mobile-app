@@ -3,6 +3,10 @@
     "name": "demo-health-mobile-app",
     "slug": "demo-health-mobile-app",
     "version": "1.0.0",
+    "updates": {
+      "enabled": true,
+      "checkAutomatically": "ON_LOAD"
+    },
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -13,7 +17,11 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.linchaitheshinigami.demohealthmobileapp",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
     },
     "android": {
       "adaptiveIcon": {
@@ -21,10 +29,16 @@
         "backgroundColor": "#ffffff"
       },
       "edgeToEdgeEnabled": true,
-      "predictiveBackGestureEnabled": false
+      "predictiveBackGestureEnabled": false,
+      "package": "com.linchaitheshinigami.demohealthmobileapp"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "4e8c86e6-2e40-4c3a-80d3-8749d8ad9539"
+      }
     }
   }
 }
