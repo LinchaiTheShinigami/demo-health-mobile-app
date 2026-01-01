@@ -1,0 +1,58 @@
+name: Build and Release Mobile Apps
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  release:
+    types: [published]
+
+jobs:
+  build-android:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+      - name: Setup JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+      - name: Install dependencies
+        run: npm ci
+      - name: Build Android APK
+        run: |
+          cd android
+          ./gradlew assembleRelease
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: android-apk
+          path: android/app/build/outputs/apk/release/app-release.apk
+
+  build-ios:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+      - name: Install dependencies
+        run: npm ci
+      - name: Install CocoaPods
+        run: |
+          cd ios
+          pod install
+      - name: Build iOS IPA
+        run: |
+          cd ios
+          xcodebuild -workspace demohealthmobileapp.xcworkspace -scheme demohealthmobileapp -configuration Release -archivePath build/demohealthmobileapp.xcarchive archive
+          xcodebuild -exportArchive -archivePath build/demohealthmobileapp.xcarchive -exportPath build -exportOptionsPlist exportOptions.plist
+      - name: Upload IPA
+        uses: actions/upload-artifact@v4
+        with:
+          name: ios-ipa
+          path: ios/build/demohealthmobileapp.ipa
